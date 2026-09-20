@@ -55,16 +55,23 @@ public class Quiz {
     @Column(name = "answer_index", nullable = false)
     private int answerIndex;
 
+    // 「なぜその選択肢が正解(または不正解)なのか」を回答後に表示するための解説文。
+    // 正誤だけを伝えるクイズは記憶に残りにくいため、
+    // 理由まで説明することで実務で使える理解につなげる狙いがある。
+    @Column(nullable = false, length = 1000)
+    private String explanation;
+
     // JPAがDBから読み込んだデータをインスタンス化する際に必要な引数なしコンストラクタ。
     // アプリのコードから直接使うことは想定していないためprotectedにしている。
     protected Quiz() {
     }
 
-    public Quiz(QuizCategory category, String question, List<String> choices, int answerIndex) {
+    public Quiz(QuizCategory category, String question, List<String> choices, int answerIndex, String explanation) {
         this.category = category;
         this.question = question;
         this.choices = choices;
         this.answerIndex = answerIndex;
+        this.explanation = explanation;
     }
 
     public Long getId() {
@@ -85,5 +92,9 @@ public class Quiz {
 
     public int getAnswerIndex() {
         return answerIndex;
+    }
+
+    public String getExplanation() {
+        return explanation;
     }
 }

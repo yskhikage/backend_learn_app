@@ -31,6 +31,8 @@ git・Docker・Java(Spring Boot)・Linux・AWS をクイズ形式で学べる学
 - `GET /api/quizzes?category=git` で問題一覧を取得するAPIを実装済み
 - 問題データはPostgreSQL(Docker Composeで起動)にJPA経由で保存
   (起動時に `data.sql` で初期データを投入。再起動しても重複しない)
+- 問題は暗記系のトリビアではなく、実務のトラブル対応・設計判断を問う内容にしている
+  (各カテゴリ5問、計25問)。回答後には「なぜその答えなのか」の解説(explanation)を表示する
 - テスト実行時はPostgreSQLの代わりにインメモリDB(H2)へ自動で差し替わる設定済み
 - `src/main/resources/static/` 配下に簡単なフロントエンド(HTML/CSS/JS)を実装済み
   (カテゴリ選択→1問ずつ出題→正誤判定→結果表示)

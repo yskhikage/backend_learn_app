@@ -34,9 +34,9 @@ class QuizControllerTest {
     void setUp() {
         quizRepository.deleteAll();
         quizRepository.saveAll(List.of(
-                new Quiz(QuizCategory.GIT, "質問1", List.of("A", "B"), 0),
-                new Quiz(QuizCategory.GIT, "質問2", List.of("A", "B"), 1),
-                new Quiz(QuizCategory.DOCKER, "質問3", List.of("A", "B"), 0)
+                new Quiz(QuizCategory.GIT, "質問1", List.of("A", "B"), 0, "解説1"),
+                new Quiz(QuizCategory.GIT, "質問2", List.of("A", "B"), 1, "解説2"),
+                new Quiz(QuizCategory.DOCKER, "質問3", List.of("A", "B"), 0, "解説3")
         ));
     }
 

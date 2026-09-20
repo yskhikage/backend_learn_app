@@ -223,6 +223,28 @@ body {
     color: var(--color-error);
 }
 
+.explanation-box {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.06);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+}
+
+.explanation-box__label {
+    margin: 0 0 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.explanation-box__text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-text);
+}
+
 .primary-button {
     display: block;
     width: 100%;

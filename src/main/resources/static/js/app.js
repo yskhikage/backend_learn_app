@@ -89,6 +89,8 @@ function renderQuestion() {
     feedback.hidden = true;
     feedback.className = "feedback-text";
 
+    document.getElementById("explanation-box").hidden = true;
+
     const nextButton = document.getElementById("next-button");
     nextButton.hidden = true;
 
@@ -130,6 +132,11 @@ function handleChoiceClick(selectedIndex) {
     feedback.hidden = false;
     feedback.textContent = isCorrect ? "正解です!" : "残念、不正解です";
     feedback.classList.add(isCorrect ? "is-correct" : "is-wrong");
+
+    // 正誤だけで終わらせず、なぜその答えなのかという理由まで見てもらうことで
+    // 実務で使える理解につなげる。
+    document.getElementById("explanation-text").textContent = quiz.explanation;
+    document.getElementById("explanation-box").hidden = false;
 
     document.getElementById("next-button").hidden = false;
 }
