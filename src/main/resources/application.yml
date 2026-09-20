@@ -1,0 +1,9 @@
+# アプリ全体の設定ファイル。
+# ポート番号などをコードに直接書かず、ここにまとめることで
+# 環境ごとの変更がしやすくなる。
+server:
+  port: 8080
+
+spring:
+  application:
+    name: backend-learn-app
