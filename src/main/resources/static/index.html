@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バックエンド学習クイズ</title>
+<!--
+  静的ファイル(HTML/CSS/JS)はここに置くだけで、
+  Spring Bootが自動的に配信してくれる(src/main/resources/static/ 配下)。
+  新しくControllerを書く必要はない。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+    <header class="app-header">
+        <h1>バックエンド学習クイズ</h1>
+        <p class="app-header__subtitle">git・Docker・Java・Linux・AWS をクイズで学ぼう</p>
+    </header>
+
+    <!-- 画面1: カテゴリ選択 -->
+    <section id="category-screen" class="screen">
+        <p class="section-label">カテゴリを選んでください</p>
+        <div id="category-list" class="category-grid"></div>
+    </section>
+
+    <!-- 画面2: 出題中 -->
+    <section id="quiz-screen" class="screen" hidden>
+        <div class="quiz-topbar">
+            <span id="quiz-category-badge" class="badge"></span>
+            <span id="quiz-progress" class="progress-text"></span>
+        </div>
+        <div class="progress-bar">
+            <div id="progress-bar-fill" class="progress-bar__fill"></div>
+        </div>
+
+        <div class="question-card">
+            <p id="question-text" class="question-text"></p>
+            <div id="choice-list" class="choice-list"></div>
+            <p id="feedback-text" class="feedback-text" hidden></p>
+        </div>
+
+        <button id="next-button" class="primary-button" hidden>次の問題へ</button>
+    </section>
+
+    <!-- 画面3: 結果 -->
+    <section id="result-screen" class="screen" hidden>
+        <div class="result-card">
+            <p id="result-emoji" class="result-emoji"></p>
+            <p id="result-score" class="result-score"></p>
+            <p id="result-message" class="result-message"></p>
+        </div>
+        <div class="result-actions">
+            <button id="retry-button" class="primary-button">同じカテゴリでもう一度</button>
+            <button id="back-button" class="secondary-button">カテゴリを選び直す</button>
+        </div>
+    </section>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

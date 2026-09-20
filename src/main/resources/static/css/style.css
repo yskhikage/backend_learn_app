@@ -1,0 +1,284 @@
+/*
+ * 全体の見た目を担当するスタイルシート。
+ * 色や余白などの「見た目の基本値」は:rootにCSS変数としてまとめておくことで、
+ * 後から配色を変えたいときにここだけ直せばよいようにしている。
+ */
+:root {
+    --color-bg-start: #eef2ff;
+    --color-bg-end: #e0f2fe;
+    --color-primary: #4f46e5;
+    --color-primary-dark: #4338ca;
+    --color-text: #1e1b3a;
+    --color-text-sub: #6b7280;
+    --color-card-bg: #ffffff;
+    --color-border: #e5e7eb;
+    --color-success: #16a34a;
+    --color-success-bg: #dcfce7;
+    --color-error: #dc2626;
+    --color-error-bg: #fee2e2;
+    --shadow-card: 0 10px 30px rgba(79, 70, 229, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*
+ * hidden属性を持つ要素は必ず非表示にする。
+ * .primary-button 等で display: block を指定しているため、
+ * 詳細度が同じ [hidden] のUAスタイルシート規則が上書きされてしまう。
+ * それを防ぐために優先度を上げて明示的に指定している。
+ */
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    color: var(--color-text);
+    background: linear-gradient(160deg, var(--color-bg-start), var(--color-bg-end));
+    display: flex;
+    justify-content: center;
+    padding: 24px 16px 48px;
+}
+
+.app {
+    width: 100%;
+    max-width: 480px;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.app-header h1 {
+    margin: 0 0 6px;
+    font-size: 1.6rem;
+    font-weight: 900;
+}
+
+.app-header__subtitle {
+    margin: 0;
+    color: var(--color-text-sub);
+    font-size: 0.9rem;
+}
+
+.screen {
+    animation: fade-in 0.25s ease-out;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-label {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* --- カテゴリ選択画面 --- */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.category-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 18px 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(79, 70, 229, 0.2);
+}
+
+.category-card__icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.category-card__label {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* --- 出題画面 --- */
+.quiz-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    color: var(--color-text-sub);
+    font-weight: 700;
+}
+
+.progress-bar {
+    height: 6px;
+    background: rgba(79, 70, 229, 0.12);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-bar__fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+}
+
+.question-card {
+    background: var(--color-card-bg);
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: var(--shadow-card);
+    margin-bottom: 16px;
+}
+
+.question-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin: 0 0 18px;
+}
+
+.choice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-button {
+    text-align: left;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--color-border);
+    background: #fff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+
+.choice-button:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+.choice-button:disabled {
+    cursor: default;
+}
+
+.choice-button.is-correct {
+    border-color: var(--color-success);
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    font-weight: 700;
+}
+
+.choice-button.is-wrong {
+    border-color: var(--color-error);
+    background: var(--color-error-bg);
+    color: var(--color-error);
+    font-weight: 700;
+}
+
+.feedback-text {
+    margin: 16px 0 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+.feedback-text.is-correct {
+    color: var(--color-success);
+}
+
+.feedback-text.is-wrong {
+    color: var(--color-error);
+}
+
+.primary-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.primary-button:hover {
+    background: var(--color-primary-dark);
+}
+
+.secondary-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px solid var(--color-border);
+    border-radius: 14px;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* --- 結果画面 --- */
+.result-card {
+    background: var(--color-card-bg);
+    border-radius: 20px;
+    padding: 36px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    margin-bottom: 16px;
+}
+
+.result-emoji {
+    font-size: 2.6rem;
+    margin: 0 0 8px;
+}
+
+.result-score {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin: 0 0 6px;
+}
+
+.result-message {
+    color: var(--color-text-sub);
+    margin: 0;
+}

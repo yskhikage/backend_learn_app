@@ -20,7 +20,11 @@ src/main/java/com/example/backendlearn/
     ├── QuizService.java      カテゴリで絞り込むロジック
     └── QuizController.java   REST APIのエンドポイント
 src/main/resources/
-└── application.yml           アプリの設定(ポート番号など)
+├── application.yml           アプリの設定(ポート番号など)
+└── static/                   フロントエンド(HTML/CSS/JS、Spring Bootが自動配信)
+    ├── index.html             画面の構造
+    ├── css/style.css          見た目のスタイル
+    └── js/app.js              クイズの動作ロジック
 ```
 
 各ファイルの役割や「なぜそう書くか」は `CLAUDE.md` のルールに従って
@@ -40,7 +44,7 @@ Maven Wrapper を使うので、Mavenを別途インストールする必要は�
 ./mvnw spring-boot:run
 ```
 
-起動後、`http://localhost:8080` でアプリが動きます。
+起動後、ブラウザで `http://localhost:8080` を開くとクイズ画面が表示されます。
 
 ## APIの動作確認
 
