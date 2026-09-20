@@ -7,3 +7,30 @@ server:
 spring:
   application:
     name: backend-learn-app
+
+  # docker-compose.yml で起動するPostgreSQLへの接続設定。
+  # ここに書いているユーザー名/パスワードはローカル開発専用の固定値であり、
+  # 本番環境の認証情報ではないためコミットしてよい
+  # (本番用の値は環境変数などで別途注入し、絶対にここに書かない)。
+  datasource:
+    url: jdbc:postgresql://localhost:5432/backend_learn_app
+    username: app
+    password: app
+
+  jpa:
+    hibernate:
+      # エンティティの定義からテーブルを自動生成/更新する設定。
+      # 学習用アプリなので手軽さを優先しているが、
+      # 本来はFlywayなどのマイグレーションツールで管理するのが望ましい(今後のタスク)。
+      ddl-auto: update
+    # data.sql(初期データ投入)は、Hibernateがテーブルを作り終えたあとに実行したいため、
+    # データソースの初期化をJPAの初期化より後回しにする設定。
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  sql:
+    init:
+      mode: always

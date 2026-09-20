@@ -1,0 +1,22 @@
+# ローカル開発用のPostgreSQLを起動するための設定。
+# 「アプリと同じマシンにPostgreSQLを直接インストールする」のではなく
+# Dockerコンテナとして起動することで、
+# 環境を汚さず・誰の環境でも同じバージョンのDBを再現できるようにしている。
+#
+# 起動: docker compose up -d
+# 停止: docker compose down
+# データも含めて削除: docker compose down -v
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: backend_learn_app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

@@ -29,7 +29,9 @@ git・Docker・Java(Spring Boot)・Linux・AWS をクイズ形式で学べる学
 
 - Spring Boot 3 / Java 21 / Maven
 - `GET /api/quizzes?category=git` で問題一覧を取得するAPIを実装済み
-- 問題データは `QuizData.java` にJavaコード内で固定して保持(DB未使用)
+- 問題データはPostgreSQL(Docker Composeで起動)にJPA経由で保存
+  (起動時に `data.sql` で初期データを投入。再起動しても重複しない)
+- テスト実行時はPostgreSQLの代わりにインメモリDB(H2)へ自動で差し替わる設定済み
 - `src/main/resources/static/` 配下に簡単なフロントエンド(HTML/CSS/JS)を実装済み
   (カテゴリ選択→1問ずつ出題→正誤判定→結果表示)
 
@@ -45,10 +47,10 @@ DB・ネットワーク・セキュリティなど)を幅広く学べる、規�
 ## 今後の進め方(想定)
 
 小さいステップで少しずつ機能を追加していく想定です。例:
-- 問題データをDBに移す
 - カテゴリ一覧を返すAPIを追加する
 - 正解判定APIを追加する
-- Docker化する
+- data.sqlをFlywayなどのマイグレーションツールに置き換える
+- アプリ本体もDocker化する(現状はDBのみDocker化済み)
 - 新しい学習カテゴリ(DB・ネットワークなど)を追加する
 
 これらは今回のタスクの範囲外なので、指示があるまで実装しません。

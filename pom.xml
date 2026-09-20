@@ -27,9 +27,32 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- DBアクセス(JPA/Hibernate)を使うためのスターター -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- 本番/開発で使うPostgreSQLへの接続ドライバ。実行時だけ必要なのでruntimeスコープ -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+          テストではPostgreSQLを別途起動させたくないので、
+          テスト実行時だけインメモリDBのH2に差し替える。
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

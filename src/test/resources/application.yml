@@ -1,0 +1,21 @@
+# テスト実行時だけ使われる設定ファイル。
+# テストのたびにPostgreSQLを起動しておくのは手間なので、
+# テストではインメモリDBのH2に差し替えている。
+# (src/test/resources は src/main/resources より優先してクラスパスに読み込まれるため、
+#  同名のapplication.ymlを置くだけでテスト時だけ設定を上書きできる)
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  # data.sqlはPostgreSQL専用のON CONFLICT構文を使っておりH2では実行できないため、
+  # テストでは自動投入を止め、各テストが自分で必要なデータをリポジトリ経由で用意する。
+  sql:
+    init:
+      mode: never
